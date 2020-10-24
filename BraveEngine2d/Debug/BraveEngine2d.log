@@ -1,0 +1,4 @@
+﻿  Game.cpp
+c:\users\peter\onedrive\documents\visual studio 2017\projects\braveengine2d\braveengine2d\game.cpp(99): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+  BraveEngine2d.vcxproj -> C:\Users\Peter\onedrive\documents\visual studio 2017\Projects\BraveEngine2d\Debug\BraveEngine2d.exe
+  BraveEngine2d.vcxproj -> C:\Users\Peter\onedrive\documents\visual studio 2017\Projects\BraveEngine2d\Debug\BraveEngine2d.pdb (Partial PDB)
