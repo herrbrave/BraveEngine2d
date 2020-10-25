@@ -55,9 +55,6 @@ private:
 	SDL_GLContext context;
 	void initVideoSystems();
 	void initGL();
-
-	std::unordered_map<std::string, TexturePtr> textures;
-	std::unordered_map<std::string, ShaderPtr> shaders;
 };
 
 typedef std::shared_ptr<Graphics> GraphicsPtr;
