@@ -30,16 +30,21 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Asset.h" />
+    <ClInclude Include="Component.h" />
     <ClInclude Include="Constants.h" />
     <ClInclude Include="Drawable.h" />
+    <ClInclude Include="DrawableComponent.h" />
+    <ClInclude Include="Entity.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="Graphics.h" />
+    <ClInclude Include="PhysicsComponent.h" />
     <ClInclude Include="RectangleDrawable.h" />
     <ClInclude Include="ResourceManager.h" />
     <ClInclude Include="Shader.h" />
     <ClInclude Include="System.h" />
     <ClInclude Include="Texture.h" />
     <ClInclude Include="TextureDrawable.h" />
+    <ClInclude Include="Uuid.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

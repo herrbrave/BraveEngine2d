@@ -1,13 +1,14 @@
 #pragma once
 
 #include "Drawable.h"
+#include "ResourceManager.h"
 #include "Texture.h"
 
 class TextureDrawable : public Drawable {
 public:
-	WeakTexturePtr texture;
+	std::string texture;
 
-	TextureDrawable(WeakShaderPtr shader, WeakTexturePtr texture, const float* texCoords = nullptr);
+	TextureDrawable(std::string shader, std::string texture, const float* texCoords = nullptr);
 
 	void render(
 		float dt,
@@ -21,3 +22,4 @@ public:
 private:
 	const float DEFAULT_TEX_COORDS[12] = { 0.0f, 1.0f, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 1.0f, 1.0f, 1.0f, 0.0f };
 };
+

@@ -5,12 +5,13 @@
 #include <glm/gtx/string_cast.hpp>
 
 #include "Drawable.h"
+#include "ResourceManager.h"
 #include "Shader.h"
 
 class RectangleDrawable : public Drawable {
 public:
 
-	RectangleDrawable(WeakShaderPtr shader);
+	RectangleDrawable(std::string shader);
 
 	void render(
 		float dt, 

@@ -1,6 +1,6 @@
 #include "RectangleDrawable.h"
 
-RectangleDrawable::RectangleDrawable(WeakShaderPtr weakShaderPtr) : Drawable(weakShaderPtr) {
+RectangleDrawable::RectangleDrawable(std::string shader) : Drawable(shader) {
 
 	GLfloat points[] = {
 		0.0f, 1.0f,
@@ -26,7 +26,7 @@ void RectangleDrawable::render(
 							float rotation,
 							glm::vec4 color) {
 
-	ShaderPtr shad = makeShared(this->shader);
+	ShaderPtr shad = makeShared(ResourceManager::getShader(this->shader));
 
 	glm::mat4 model = glm::mat4(1.0f);
 	model = glm::translate(model, glm::vec3(position, 0.0f));

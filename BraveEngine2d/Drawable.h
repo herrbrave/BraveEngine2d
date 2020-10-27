@@ -5,8 +5,8 @@
 
 class Drawable {
 public:
-	Drawable(WeakShaderPtr shader) {
-		this->shader = shader;
+	Drawable(std::string shader) {
+		this->shader = std::move(shader);
 	}
 
 	virtual ~Drawable() {
@@ -23,7 +23,7 @@ public:
 		glm::vec4 color) = 0;
 
 protected:
-	WeakShaderPtr shader;
+	std::string shader;
 	unsigned int vbo;
 };
 

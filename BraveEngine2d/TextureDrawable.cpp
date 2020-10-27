@@ -1,11 +1,11 @@
 #include "TextureDrawable.h"
 
-TextureDrawable::TextureDrawable(WeakShaderPtr shader, WeakTexturePtr texture, const float* texCoords) : Drawable(shader) {
+TextureDrawable::TextureDrawable(std::string shader, std::string texture, const float* texCoords) : Drawable(shader) {
 	if (texCoords == nullptr) {
 		texCoords = DEFAULT_TEX_COORDS;
 	}
 
-	this->texture = texture;
+	this->texture = std::move(texture);
 
 	GLfloat points[] = {
 		0.0f, 1.0f, texCoords[0], texCoords[1],
@@ -31,7 +31,7 @@ void TextureDrawable::render(
 	float rotation,
 	glm::vec4 color) {
 
-	ShaderPtr shad = makeShared(this->shader);
+	ShaderPtr shad = makeShared(ResourceManager::getShader(this->shader));
 
 	glm::mat4 model = glm::mat4(1.0f);
 	model = glm::translate(model, glm::vec3(position, 0.0f));
@@ -49,7 +49,7 @@ void TextureDrawable::render(
 	shad->setVector4f("color", color);
 
 	glActiveTexture(GL_TEXTURE0);
-	TexturePtr text = makeShared(this->texture);
+	TexturePtr text = makeShared(ResourceManager::getTexture(this->texture));
 	text->bind();
 
 	glEnableVertexAttribArray(0);
