@@ -26,7 +26,7 @@ void RectangleDrawable::render(
 							float rotation,
 							glm::vec4 color) {
 
-	ShaderPtr shad = makeShared(ResourceManager::getShader(this->shader));
+	ShaderPtr shad = makeShared(GraphicsResourceManager::getShader(this->shader));
 
 	glm::mat4 model = glm::mat4(1.0f);
 	model = glm::translate(model, glm::vec3(position, 0.0f));

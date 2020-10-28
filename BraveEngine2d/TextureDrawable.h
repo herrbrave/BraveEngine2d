@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Drawable.h"
-#include "ResourceManager.h"
+#include "GraphicsResourceManager.h"
 #include "Texture.h"
 
 class TextureDrawable : public Drawable {

@@ -31,7 +31,7 @@ void TextureDrawable::render(
 	float rotation,
 	glm::vec4 color) {
 
-	ShaderPtr shad = makeShared(ResourceManager::getShader(this->shader));
+	ShaderPtr shad = makeShared(GraphicsResourceManager::getShader(this->shader));
 
 	glm::mat4 model = glm::mat4(1.0f);
 	model = glm::translate(model, glm::vec3(position, 0.0f));
@@ -49,7 +49,7 @@ void TextureDrawable::render(
 	shad->setVector4f("color", color);
 
 	glActiveTexture(GL_TEXTURE0);
-	TexturePtr text = makeShared(ResourceManager::getTexture(this->texture));
+	TexturePtr text = makeShared(GraphicsResourceManager::getTexture(this->texture));
 	text->bind();
 
 	glEnableVertexAttribArray(0);

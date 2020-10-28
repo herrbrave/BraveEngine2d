@@ -13,7 +13,7 @@
 #include "Texture.h"
 #include "Shader.h"
 
-class ResourceManager {
+class GraphicsResourceManager {
 public:
 	static std::map<std::string, ShaderPtr> shaders;
 	static std::map<std::string, TexturePtr> textures;
@@ -25,7 +25,7 @@ public:
 	static void clear();
 
 private:
-	ResourceManager() {}
+	GraphicsResourceManager() {}
 	
 	static Shader loadShaderFromFile(const char* vShaderFile, const char* fShaderFile, const char* gShaderFile = nullptr);
 	static Texture loadTextureFromFile(const char* file, bool alpha);

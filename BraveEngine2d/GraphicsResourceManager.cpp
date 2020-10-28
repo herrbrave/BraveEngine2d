@@ -1,34 +1,34 @@
-#include "ResourceManager.h"
+#include "GraphicsResourceManager.h"
 
-std::map<std::string, ShaderPtr> ResourceManager::shaders;
-std::map<std::string, TexturePtr> ResourceManager::textures;
+std::map<std::string, ShaderPtr> GraphicsResourceManager::shaders;
+std::map<std::string, TexturePtr> GraphicsResourceManager::textures;
 
-WeakShaderPtr ResourceManager::loadShader(const char* vShaderFile, const char* fShaderFile, const char* gShaderFile, std::string name) {
+WeakShaderPtr GraphicsResourceManager::loadShader(const char* vShaderFile, const char* fShaderFile, const char* gShaderFile, std::string name) {
 	shaders[name] = std::make_shared<Shader>(loadShaderFromFile(vShaderFile, fShaderFile, gShaderFile));
 	return shaders[name];
 }
 
-WeakShaderPtr ResourceManager::getShader(std::string name) {
+WeakShaderPtr GraphicsResourceManager::getShader(std::string name) {
 	return shaders[name];
 }
 
-WeakTexturePtr ResourceManager::loadTexture(const char* file, bool alpha, std::string name) {
+WeakTexturePtr GraphicsResourceManager::loadTexture(const char* file, bool alpha, std::string name) {
 	textures[name] = std::make_shared<Texture>(loadTextureFromFile(file, alpha));
 	return textures[name];
 }
 
-WeakTexturePtr ResourceManager::getTexture(std::string name) {
+WeakTexturePtr GraphicsResourceManager::getTexture(std::string name) {
 	return textures[name];
 }
 
-void ResourceManager::clear() {
+void GraphicsResourceManager::clear() {
 	for (auto iter : shaders)
 		glDeleteProgram(iter.second->id);
 	for (auto iter : textures)
 		glDeleteTextures(1, &iter.second->id);
 }
 
-Shader ResourceManager::loadShaderFromFile(const char* vShaderFile, const char* fShaderFile, const char* gShaderFile) {	
+Shader GraphicsResourceManager::loadShaderFromFile(const char* vShaderFile, const char* fShaderFile, const char* gShaderFile) {	
 
 	std::string vertexCode;
 	std::string fragmentCode;
@@ -66,7 +66,7 @@ Shader ResourceManager::loadShaderFromFile(const char* vShaderFile, const char* 
 }
 
 
-Texture ResourceManager::loadTextureFromFile(const char* file, bool alpha) {
+Texture GraphicsResourceManager::loadTextureFromFile(const char* file, bool alpha) {
 
 	Texture texture;
 	if (alpha) {

@@ -5,7 +5,9 @@
 #include "PhysicsComponent.h"
 #include "TextureDrawable.h"
 #include "Graphics.h"
-#include "ResourceManager.h"
+#include "GraphicsResourceManager.h"
+#include "PhysicsResourceManager.h"
+
 #include <glm/gtc/matrix_transform.hpp>
 
 class Game {
@@ -15,6 +17,7 @@ public:
 
 private:
 	GraphicsPtr graphics;
+	PhysicsResourceManager* physicsResourceManager;
 	EntityPtr entity;
 	bool playing = true;
 

@@ -5,7 +5,7 @@
 #include <glm/gtx/string_cast.hpp>
 
 #include "Drawable.h"
-#include "ResourceManager.h"
+#include "GraphicsResourceManager.h"
 #include "Shader.h"
 
 class RectangleDrawable : public Drawable {

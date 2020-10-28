@@ -3,15 +3,15 @@
 #include <glm\glm.hpp>
 
 #include "Component.h"
+#include "Physics.h"
 
 static const std::string PHYSICS_COMPONENT_TYPE = "PhysicsComponent";
 
 class PhysicsComponent : public Component {
 public:
-	glm::vec2 position;
-	glm::vec2 velocity;
+	WeakPhysicsPtr physics;
 
-	PhysicsComponent() : Component(PHYSICS_COMPONENT_TYPE), position(glm::vec2(0.0f, 0.0f)), velocity(glm::vec2(0.0f, 0.0f)) {}
+	PhysicsComponent(WeakPhysicsPtr physics) : Component(PHYSICS_COMPONENT_TYPE), physics(std::move(physics)) {}
 };
 
 typedef std::shared_ptr<PhysicsComponent> PhysicsComponentPtr;

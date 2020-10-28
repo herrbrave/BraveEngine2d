@@ -1,5 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\Box2D-cpp.2.4.1.5\build\native\Box2D-cpp.props" Condition="Exists('..\packages\Box2D-cpp.2.4.1.5\build\native\Box2D-cpp.props')" />
+  <Import Project="..\packages\Box2D-cpp.redist.2.4.1.5\build\native\Box2D-cpp.redist.props" Condition="Exists('..\packages\Box2D-cpp.redist.2.4.1.5\build\native\Box2D-cpp.redist.props')" />
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
       <Configuration>Debug</Configuration>
@@ -22,8 +24,10 @@
     <ClCompile Include="Graphics.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Game.cpp" />
+    <ClCompile Include="Physics.cpp" />
+    <ClCompile Include="PhysicsResourceManager.cpp" />
     <ClCompile Include="RectangleDrawable.cpp" />
-    <ClCompile Include="ResourceManager.cpp" />
+    <ClCompile Include="GraphicsResourceManager.cpp" />
     <ClCompile Include="Shader.cpp" />
     <ClCompile Include="Texture.cpp" />
     <ClCompile Include="TextureDrawable.cpp" />
@@ -37,9 +41,11 @@
     <ClInclude Include="Entity.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="Graphics.h" />
+    <ClInclude Include="Physics.h" />
     <ClInclude Include="PhysicsComponent.h" />
+    <ClInclude Include="PhysicsResourceManager.h" />
     <ClInclude Include="RectangleDrawable.h" />
-    <ClInclude Include="ResourceManager.h" />
+    <ClInclude Include="GraphicsResourceManager.h" />
     <ClInclude Include="Shader.h" />
     <ClInclude Include="System.h" />
     <ClInclude Include="Texture.h" />
@@ -170,5 +176,7 @@
     <Error Condition="!Exists('..\packages\glm.0.9.9.800\build\native\glm.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\glm.0.9.9.800\build\native\glm.targets'))" />
     <Error Condition="!Exists('..\packages\sdl2_image.nuget.redist.2.0.5\build\native\sdl2_image.nuget.redist.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\sdl2_image.nuget.redist.2.0.5\build\native\sdl2_image.nuget.redist.targets'))" />
     <Error Condition="!Exists('..\packages\sdl2_image.nuget.2.0.5\build\native\sdl2_image.nuget.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\sdl2_image.nuget.2.0.5\build\native\sdl2_image.nuget.targets'))" />
+    <Error Condition="!Exists('..\packages\Box2D-cpp.redist.2.4.1.5\build\native\Box2D-cpp.redist.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Box2D-cpp.redist.2.4.1.5\build\native\Box2D-cpp.redist.props'))" />
+    <Error Condition="!Exists('..\packages\Box2D-cpp.2.4.1.5\build\native\Box2D-cpp.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Box2D-cpp.2.4.1.5\build\native\Box2D-cpp.props'))" />
   </Target>
 </Project>
