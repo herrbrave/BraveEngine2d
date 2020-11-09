@@ -1,6 +1,10 @@
 #include "RectangleDrawable.h"
 
-RectangleDrawable::RectangleDrawable(std::string shader) : Drawable(shader) {
+RectangleDrawable::RectangleDrawable(
+		std::string,
+		glm::vec2 size,
+		float rotation,
+		glm::vec4 color) : Drawable(shader, size, rotation, color) {
 
 	GLfloat points[] = {
 		0.0f, 1.0f,
@@ -18,15 +22,14 @@ RectangleDrawable::RectangleDrawable(std::string shader) : Drawable(shader) {
 }
 
 void RectangleDrawable::render(
+							AssetVendorPtr assetVendor,
 							float dt,
 							glm::mat4 projection,
 							glm::mat4 view,
-							glm::vec2 position,
-							glm::vec2 size,
-							float rotation,
-							glm::vec4 color) {
+							glm::vec2 position) {
 
-	ShaderPtr shad = makeShared(GraphicsResourceManager::getShader(this->shader));
+	AssetPtr shaderAsset = assetVendor->getAsset(this->shader);
+	ShaderPtr shad = shaderAsset->getAsset<Shader>();
 
 	glm::mat4 model = glm::mat4(1.0f);
 	model = glm::translate(model, glm::vec3(position, 0.0f));

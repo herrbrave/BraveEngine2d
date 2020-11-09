@@ -1,9 +1,12 @@
 #pragma once
 
-#include <box2d/b2_body.h>
+#include <box2d/box2d.h>
 #include <glm/glm.hpp>
 #include <memory>
 #include <string>
+#include <unordered_map>
+
+#include "Constants.h"
 
 enum PhysicsType {
 	STATIC = b2_staticBody,
@@ -16,6 +19,7 @@ enum PhysicsShapeType {
 	BOX = b2Shape::Type::e_polygon,
 };
 
+
 class PhysicsShape {
 public:
 	PhysicsShapeType type;
@@ -23,6 +27,14 @@ public:
 
 typedef std::shared_ptr<PhysicsShape> PhysicsShapePtr;
 typedef std::weak_ptr<PhysicsShape> WeakPhysicsShapePtr;
+
+struct PhysicsDeleters {
+	void operator()(b2Body* body) const {}
+};
+typedef std::shared_ptr<b2Body> BodyPtr;
+typedef std::weak_ptr<b2Body> WeakBodyPtr;
+typedef std::shared_ptr<b2World> WorldPtr;
+typedef std::weak_ptr<b2World> WeakWorldPtr;
 
 class CircleShape : public PhysicsShape {
 public:
@@ -50,6 +62,29 @@ public:
 typedef std::shared_ptr<BoxShape> BoxShapePtr;
 typedef std::weak_ptr<BoxShape> WeakBoxShapePtr;
 
+class PhysicsBody {
+public:
+	PhysicsBody(WeakBodyPtr body) : body(body) {}
+
+	void applyForce(float x, float y);
+	void applyForce(glm::vec2 force);
+
+	void applyTorque(float torque);
+
+	void applyLinearImpulse(float x, float y);
+	void applyLinearImpulse(glm::vec2 force);
+
+	void applyAngularImpulse(float torque);
+
+	glm::vec2 getPosition();
+	float getAngle();
+private:
+	WeakBodyPtr body;
+};
+
+typedef std::shared_ptr<PhysicsBody> PhysicsBodyPtr;
+typedef std::weak_ptr<PhysicsBody> WeakPhysicsBodyPtr;
+
 class PhysicsConfig {
 public:
 	PhysicsType type;
@@ -76,32 +111,16 @@ public:
 typedef std::shared_ptr<PhysicsConfig> PhysicsConfigPtr;
 typedef std::weak_ptr<PhysicsConfig> WeakPhysicsConfigPtr;
 
+static const float PHYSICS_SCALING_FACTOR = 0.02f;
 class Physics {
 public:
-	std::string physicsId;
+	std::unordered_map<std::string, BodyPtr> bodies;
+	WorldPtr world;
 
-	glm::vec2 force;
-	float torque;
-	glm::vec2 impulse;
-	float angImpulse;
-	glm::vec2 position;
-	float angleRadians;
-
-	void applyForce(glm::vec2 force);
-	void applyTorque(float torque);
-	void applyLinearImpulse(glm::vec2 force);
-	void applyAngularImpulse(float impulse);
-	glm::vec2 getPosition();
-	float getAngleRadians();
-	Physics(
-		std::string physicsId,
-		glm::vec2 force,
-		float torque,
-		glm::vec2 impulse,
-		float angImpulse,
-		glm::vec2 position,
-		float angleRadians) : physicsId(physicsId), force(force), torque(torque), impulse(impulse), angImpulse(angImpulse), position(position), angleRadians(angleRadians) {};
-}; 
+	void initPhysics(glm::vec2 gravity = glm::vec2(0.0f, 0.0f));
+	PhysicsBodyPtr loadPhysics(PhysicsConfigPtr physicsConfig, std::string name);
+	void update(float dt);
+};
 
 typedef std::shared_ptr<Physics> PhysicsPtr;
 typedef std::weak_ptr<Physics> WeakPhysicsPtr;

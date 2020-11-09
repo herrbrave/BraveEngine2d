@@ -21,19 +21,22 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="AssetManager.cpp" />
+    <ClCompile Include="Entity.cpp" />
     <ClCompile Include="Graphics.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Physics.cpp" />
-    <ClCompile Include="PhysicsResourceManager.cpp" />
+    <ClCompile Include="PhysicsComponent.cpp" />
     <ClCompile Include="RectangleDrawable.cpp" />
-    <ClCompile Include="GraphicsResourceManager.cpp" />
+    <ClCompile Include="Renderer.cpp" />
     <ClCompile Include="Shader.cpp" />
     <ClCompile Include="Texture.cpp" />
     <ClCompile Include="TextureDrawable.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Asset.h" />
+    <ClInclude Include="AssetManager.h" />
     <ClInclude Include="Component.h" />
     <ClInclude Include="Constants.h" />
     <ClInclude Include="Drawable.h" />
@@ -43,10 +46,12 @@
     <ClInclude Include="Graphics.h" />
     <ClInclude Include="Physics.h" />
     <ClInclude Include="PhysicsComponent.h" />
-    <ClInclude Include="PhysicsResourceManager.h" />
     <ClInclude Include="RectangleDrawable.h" />
-    <ClInclude Include="GraphicsResourceManager.h" />
+    <ClInclude Include="Renderer.h" />
+    <ClInclude Include="SDL_Helpers.h" />
     <ClInclude Include="Shader.h" />
+    <ClInclude Include="Sound.h" />
+    <ClInclude Include="SourceResourceManager.h" />
     <ClInclude Include="System.h" />
     <ClInclude Include="Texture.h" />
     <ClInclude Include="TextureDrawable.h" />
@@ -164,6 +169,8 @@
     <Import Project="..\packages\glm.0.9.9.800\build\native\glm.targets" Condition="Exists('..\packages\glm.0.9.9.800\build\native\glm.targets')" />
     <Import Project="..\packages\sdl2_image.nuget.redist.2.0.5\build\native\sdl2_image.nuget.redist.targets" Condition="Exists('..\packages\sdl2_image.nuget.redist.2.0.5\build\native\sdl2_image.nuget.redist.targets')" />
     <Import Project="..\packages\sdl2_image.nuget.2.0.5\build\native\sdl2_image.nuget.targets" Condition="Exists('..\packages\sdl2_image.nuget.2.0.5\build\native\sdl2_image.nuget.targets')" />
+    <Import Project="..\packages\sdl2_mixer.nuget.redist.2.0.4\build\native\sdl2_mixer.nuget.redist.targets" Condition="Exists('..\packages\sdl2_mixer.nuget.redist.2.0.4\build\native\sdl2_mixer.nuget.redist.targets')" />
+    <Import Project="..\packages\sdl2_mixer.nuget.2.0.4\build\native\sdl2_mixer.nuget.targets" Condition="Exists('..\packages\sdl2_mixer.nuget.2.0.4\build\native\sdl2_mixer.nuget.targets')" />
   </ImportGroup>
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
@@ -178,5 +185,7 @@
     <Error Condition="!Exists('..\packages\sdl2_image.nuget.2.0.5\build\native\sdl2_image.nuget.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\sdl2_image.nuget.2.0.5\build\native\sdl2_image.nuget.targets'))" />
     <Error Condition="!Exists('..\packages\Box2D-cpp.redist.2.4.1.5\build\native\Box2D-cpp.redist.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Box2D-cpp.redist.2.4.1.5\build\native\Box2D-cpp.redist.props'))" />
     <Error Condition="!Exists('..\packages\Box2D-cpp.2.4.1.5\build\native\Box2D-cpp.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Box2D-cpp.2.4.1.5\build\native\Box2D-cpp.props'))" />
+    <Error Condition="!Exists('..\packages\sdl2_mixer.nuget.redist.2.0.4\build\native\sdl2_mixer.nuget.redist.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\sdl2_mixer.nuget.redist.2.0.4\build\native\sdl2_mixer.nuget.redist.targets'))" />
+    <Error Condition="!Exists('..\packages\sdl2_mixer.nuget.2.0.4\build\native\sdl2_mixer.nuget.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\sdl2_mixer.nuget.2.0.4\build\native\sdl2_mixer.nuget.targets'))" />
   </Target>
 </Project>

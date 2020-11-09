@@ -9,12 +9,6 @@ Graphics::~Graphics() {
 	SDL_Quit();
 }
 
-void Graphics::render() {
-	//glClear(GL_COLOR_BUFFER_BIT);
-
-	SDL_GL_SwapWindow(window.get());
-}
-
 void Graphics::initVideoSystems() {
 
 	// initialize
@@ -34,7 +28,8 @@ void Graphics::initVideoSystems() {
 		SDL_Quit();
 	}
 
-	context = SDL_GL_CreateContext(window.get());
+	SDL_GLContext ctxt = SDL_GL_CreateContext(window.get());
+	context.reset(&ctxt);
 	if (!context) {
 		printf("Unable to create GL context:\n %s", SDL_GetError());
 		SDL_Quit();
@@ -55,4 +50,7 @@ void Graphics::initVideoSystems() {
 	glViewport(0, 0, this->graphicsConfig->width, this->graphicsConfig->height);
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
+	this->projection = glm::ortho<float>(0.0f, this->graphicsConfig->width * 2, this->graphicsConfig->height * 2, 0.0f, -1.0f, 1.0f);
+	this->view = glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, 0.0f, 0.0f));
 }

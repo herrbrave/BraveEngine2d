@@ -1,12 +1,13 @@
 #pragma once
 
+#include "AssetManager.h"
 #include "DrawableComponent.h"
 #include "Entity.h"
+#include "RectangleDrawable.h"
 #include "PhysicsComponent.h"
 #include "TextureDrawable.h"
 #include "Graphics.h"
-#include "GraphicsResourceManager.h"
-#include "PhysicsResourceManager.h"
+#include "Renderer.h"
 
 #include <glm/gtc/matrix_transform.hpp>
 
@@ -16,13 +17,13 @@ public:
 	void play();
 
 private:
-	GraphicsPtr graphics;
-	PhysicsResourceManager* physicsResourceManager;
-	EntityPtr entity;
+	AssetManagerPtr assetManager{ nullptr };
+	AssetVendorPtr assetVendor{ nullptr };
+	PhysicsPtr physics{ nullptr };
+	RendererPtr renderer{ nullptr };
 	bool playing = true;
-
-	glm::mat4 projection;
-	glm::mat4 view;
+	std::vector<EntityPtr> entities;
+	glm::vec2 impulse{ 0.0f, 0.0f };
 
 	void update(unsigned int ticks);
 	void draw();
